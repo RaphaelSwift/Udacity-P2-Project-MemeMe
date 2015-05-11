@@ -19,6 +19,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        
+        // If a user has sent memes, the S​ent Memes View a​ppears upon launching the app (defined by default in storyboard), else if it's empty the Meme Editor View appears
+        
+        if memes.isEmpty {
+            
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        var storyboard = UIStoryboard(name: "Main", bundle: nil)
+        
+        var initialViewController = storyboard.instantiateViewControllerWithIdentifier("MemeViewController") as! UIViewController
+        
+        self.window?.rootViewController = initialViewController
+        self.window?.makeKeyAndVisible()
+            
+        }
+        
+        
         return true
     }
 

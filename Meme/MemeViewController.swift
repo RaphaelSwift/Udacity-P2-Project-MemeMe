@@ -112,6 +112,10 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         toolBar.hidden = true
         navigationBar.hidden = true
         
+        // Resign first responders , we don't want to capture the editing blue line if we are still in the text field when generating a Meme
+        textFieldBottom.resignFirstResponder()
+        textFieldTop.resignFirstResponder()
+        
         //Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         self.view.drawViewHierarchyInRect(self.view.frame, afterScreenUpdates: true)
@@ -126,6 +130,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         
     }
     
+    // Share the Meme
     
     @IBAction func shareMeme(sender: UIBarButtonItem) {
         
@@ -148,11 +153,30 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func saveMemeAfterSharing (String!,completed: Bool, [AnyObject]!, NSError!) -> Void {
         if completed {
         self.save()
-        self.dismissViewControllerAnimated(true, completion: nil)
+            
+            // Present the sent table view controller
+            presentSentMemeController()
+            
+
         }
     }
+
+// Present the Sent memes when the user hit cancel
     
+    @IBAction func cancelMemeEditor(sender: UIBarButtonItem) {
+        // Present the sent table view controller
+        presentSentMemeController()
+    }
     
+    // Method to present the Sent Meme View Controller
+    func presentSentMemeController() {
+    
+    let tabController = self.storyboard!.instantiateViewControllerWithIdentifier("SentMemeController") as! UITabBarController
+    
+    self.presentViewController(tabController, animated: true, completion: nil)
+    
+    }
+
 
     
 // *** ----------------------------------- *** //
