@@ -16,30 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Array of memes
     var memes = [Meme]()
 
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        
-        // If a user has sent memes, the S​ent Memes View a​ppears upon launching the app (defined by default in storyboard), else if it's empty the Meme Editor View appears
-        
-        if memes.isEmpty {
-            
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        
-        var storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        var initialViewController = storyboard.instantiateViewControllerWithIdentifier("MemeViewController") as! UIViewController
-        
-        self.window?.rootViewController = initialViewController
-        self.window?.makeKeyAndVisible()
-            
-        }
-        
-        
-        return true
-    }
-
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

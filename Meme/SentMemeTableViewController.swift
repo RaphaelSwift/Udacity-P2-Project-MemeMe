@@ -26,7 +26,9 @@ class SentMemeTableViewController: UIViewController, UITableViewDataSource, UITa
     // Number of rows to be displayed corresponds to the number of memes
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
         return memes.count
+
     }
     
     // Display a meme image for each row
